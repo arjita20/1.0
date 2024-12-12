@@ -1,0 +1,80 @@
+class Deque:
+    def __init__(self, max_size=None):
+        self.deque = []
+        self.max_size = max_size
+    
+    def append_left(self, value):
+        """Add an item to the front of the deque."""
+        if self.max_size is not None and len(self.deque) >= self.max_size:
+            raise IndexError("Deque is full")
+        self.deque.insert(0, value)
+    
+    def append_right(self, value):
+        """Add an item to the end of the deque."""
+        if self.max_size is not None and len(self.deque) >= self.max_size:
+            raise IndexError("Deque is full")
+        self.deque.append(value)
+    
+    def pop_left(self):
+        """Remove and return an item from the front of the deque."""
+        if self.is_empty():
+            raise IndexError("Deque is empty")
+        return self.deque.pop(0)
+    
+    def pop_right(self):
+        """Remove and return an item from the end of the deque."""
+        if self.is_empty():
+            raise IndexError("Deque is empty")
+        return self.deque.pop()
+    
+    def peek_left(self):
+        """Return the item from the front of the deque without removing it."""
+        if self.is_empty():
+            raise IndexError("Deque is empty")
+        return self.deque[0]
+    
+    def peek_right(self):
+        """Return the item from the end of the deque without removing it."""
+        if self.is_empty():
+            raise IndexError("Deque is empty")
+        return self.deque[-1]
+    
+    def is_empty(self):
+        """Check if the deque is empty."""
+        return len(self.deque) == 0
+    
+    def size(self):
+        """Return the size of the deque."""
+        return len(self.deque)
+    
+    def __str__(self):
+        """Return a string representation of the deque."""
+        return f"Deque({self.deque})"
+
+
+# Example usage of the Deque class
+if __name__ == "__main__":
+    dq = Deque(max_size=5)  # Optional: Set a max size
+    
+    # Add elements to the deque
+    dq.append_right(10)
+    dq.append_left(20)
+    dq.append_right(30)
+    
+    print("Deque after adding elements:", dq)
+    
+    # Pop elements from the deque
+    print("Popped from left:", dq.pop_left())  # Output: 20
+    print("Popped from right:", dq.pop_right())  # Output: 30
+    
+    # Check remaining elements
+    print("Deque after pops:", dq)
+    
+    # Peeking
+    print("Peek left:", dq.peek_left())  # Output: 10
+    print("Peek right:", dq.peek_right())  # Output: 10
+    
+    # Check size and if empty
+    print("Size of deque:", dq.size())  # Output: 1
+    print("Is deque empty?", dq.is_empty())  # Output: False
+    
